@@ -1,4 +1,5 @@
 import { Outlet, Route, Routes } from 'react-router-dom';
+import { FullLayout } from './components/layout';
 import { RegisterPage } from './pages';
 
 const App = () => {
@@ -6,6 +7,7 @@ const App = () => {
     <>
       <Routes>
         <Route path='/' element={<RegisterPage />} />
+        <Route path='/test' element={<FullLayout />} />
         <Route
           path='conversations'
           element={
