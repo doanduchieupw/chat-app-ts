@@ -1,9 +1,10 @@
 import { CreateUserDto } from './dtos/CreateUser.dto';
-import { Controller, Inject, Post, Get, Body } from '@nestjs/common';
+import { Controller, Inject, Post, Get, Body, UseGuards } from '@nestjs/common';
 import { IAuthService } from './auth';
 import { Routes, Services } from '../utils/constants';
 import { IUserService } from '../users/users';
 import { instanceToPlain } from 'class-transformer';
+import { LocalAuthGuard } from './utils/Guard';
 
 @Controller(Routes.AUTH)
 export class AuthController {
@@ -13,11 +14,12 @@ export class AuthController {
   ) {}
 
   @Post('register')
-  registerUser(@Body() createUserDto: CreateUserDto) {
-    return instanceToPlain(this.userService.createUser(createUserDto));
+  async registerUser(@Body() createUserDto: CreateUserDto) {
+    return instanceToPlain(await this.userService.createUser(createUserDto));
   }
 
   @Post('login')
+  @UseGuards(LocalAuthGuard)
   loginUser() {}
 
   @Get('status')
