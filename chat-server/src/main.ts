@@ -16,6 +16,7 @@ async function bootstrap() {
   const sessionRepository = getRepository(Session);
   app.setGlobalPrefix('api');
   app.useGlobalPipes(new ValidationPipe());
+  app.enableCors({ origin: ['http://localhost:5173'], credentials: true });
   app.use(
     session({
       secret: COOKIE_SECRET,

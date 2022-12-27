@@ -9,15 +9,22 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@mantine/core": "^5.9.2",
+    "@hookform/resolvers": "^2.9.10",
+    "@mantine/core": "^5.9.4",
+    "@mantine/hooks": "^5.9.4",
     "@tabler/icons": "^1.116.1",
+    "@tanstack/react-query": "^4.20.4",
+    "axios": "^1.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.40.0",
     "react-router-dom": "^6.4.3",
     "sass": "^1.56.1",
-    "styled-components": "^5.3.6"
+    "styled-components": "^5.3.6",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
+    "@types/node": "^18.11.15",
     "@types/react": "^18.0.24",
     "@types/react-dom": "^18.0.8",
     "@types/styled-components": "^5.1.26",

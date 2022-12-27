@@ -1,25 +1,30 @@
-import { Outlet, Route, Routes } from 'react-router-dom';
+import { useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import { FullLayout } from './components/layout';
-import { RegisterPage } from './pages';
+import ProtectedRoute from './components/protected-route';
+import { Register, Login, Conversation } from './pages';
+import { AuthContext } from './utils/contexts/auth-context';
+import { User } from './utils/types/auth';
 
 const App = () => {
+  const [user, setUser] = useState<User>();
   return (
-    <>
+    <AuthContext.Provider value={{ user, updateAuthUser: setUser }}>
       <Routes>
-        <Route path='/' element={<RegisterPage />} />
-        <Route path='/test' element={<FullLayout />} />
+        <Route path='register' element={<Register />} />
+        <Route path='login' element={<Login />} />
+        <Route path='test' element={<FullLayout />} />
         <Route
           path='conversations'
           element={
-            <div>
-              <div>Conversations</div>
-              <Outlet />
-            </div>
+            <ProtectedRoute>
+              <Conversation />
+            </ProtectedRoute>
           }
         />
         <Route path=':id' element={<div>Conversation ID page!</div>} />
       </Routes>
-    </>
+    </AuthContext.Provider>
   );
 };
 
